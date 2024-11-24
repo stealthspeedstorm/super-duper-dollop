@@ -6,17 +6,17 @@ import board
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
 
-# Create the SPI bus and chip select
+# SPI bus and chip select
 spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
 cs = digitalio.DigitalInOut(board.D22)
 
-# Initialize MCP3008
+# Initializing MCP3008
 mcp = MCP.MCP3008(spi, cs)
 
-# Create an analog input channel on pin 0
+# Creating an analog input channel on pin 0
 channel = AnalogIn(mcp, MCP.P0)
 
-# Function to remap a value from one range to another
+# Funct 2 remap a value from one range to another
 def remap(value, in_min, in_max, out_min, out_max):
     return int((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
 
